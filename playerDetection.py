@@ -3,7 +3,7 @@ import cv2
 
 model = YOLO('yolov8n.pt')
 
-video_path = "C:/Users/denga/Videos/Captures/NHL_video.mp4"
+video_path = "FilePath"
 cap = cv2.VideoCapture(video_path)
 
 ret = True
