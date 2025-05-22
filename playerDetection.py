@@ -1,5 +1,6 @@
 from ultralytics import YOLO
 import cv2
+import numpy as np
 
 class PlayerDetector:
     def __init__(self, model_path='yolov8n.pt'):
@@ -13,6 +14,10 @@ class PlayerDetector:
             ret, frame = cap.read()
             if not ret:
                 break
+
+            mask = self.get_ice_mask(frame)
+            detections = self.get_detections(frame)
+            frame = self.draw_player_ellipses(frame, detections, mask)
             
             cv2.imshow('Player Detection', frame)
             if cv2.waitKey(25) & 0xFF == ord('q'):
